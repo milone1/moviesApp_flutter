@@ -1,21 +1,37 @@
+import 'package:app_flutter/models/credits_response.dart';
 import 'package:app_flutter/models/movie.dart';
+import 'package:app_flutter/providers/movies_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CardCasting extends StatelessWidget {
-  final Movie movie;
-  const CardCasting({super.key, required this.movie});
+  final int movieId;
+  const CardCasting(this.movieId, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 30),
-      width: double.infinity,
-      height: 180,
-      child: ListView.builder(
-        physics: const BouncingScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) => const _CardCast(),
-      ),
+    final moviesProvider = Provider.of<MoviesProvider>(context, listen: false);
+    return FutureBuilder(
+      future: moviesProvider.getMovieCast(movieId),
+      builder: (context, AsyncSnapshot<List<Cast>> snapshot) {
+        if (true) {
+          return const SizedBox(
+            height: 180,
+            child: CupertinoActivityIndicator(),
+          );
+        }
+        return Container(
+          margin: const EdgeInsets.only(bottom: 30),
+          width: double.infinity,
+          height: 180,
+          child: ListView.builder(
+            physics: const BouncingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) => const _CardCast(),
+          ),
+        );
+      },
     );
   }
 }
