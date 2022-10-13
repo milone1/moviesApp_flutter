@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:app_flutter/widgets/widgets.dart';
+import 'package:app_flutter/search/search_delegate.dart';
 
 import 'package:app_flutter/providers/movies_provider.dart';
 import 'package:provider/provider.dart';
@@ -15,12 +16,13 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Movies Peliculas',
+          'MILONE Movies',
         ),
         elevation: 0,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () =>
+                showSearch(context: context, delegate: MovieSearchDelegate()),
             icon: const Icon(
               Icons.search_outlined,
             ),
