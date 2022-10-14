@@ -28,8 +28,7 @@ class MovieSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
-    return Text('buildResults');
+    return const Text('buildResults');
   }
 
   Widget _emptyContainer() {

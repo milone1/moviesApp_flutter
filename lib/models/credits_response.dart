@@ -2,6 +2,8 @@
 //
 //     final creditsResponse = creditsResponseFromMap(jsonString);
 
+// ignore_for_file: prefer_if_null_operators
+
 import 'dart:convert';
 
 class CreditsResponse {
@@ -59,8 +61,9 @@ class Cast {
   String? job;
 
   get fullProfilePath {
-    if (this.profilePath != null)
-      return 'https://image.tmdb.org/t/p/w500${this.profilePath}';
+    if (profilePath != null) {
+      return 'https://image.tmdb.org/t/p/w500$profilePath';
+    }
 
     return 'https://i.stack.imgur.com/GNhxO.png';
   }

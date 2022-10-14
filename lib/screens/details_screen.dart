@@ -7,8 +7,6 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
-
-    print(movie.adult);
     return Scaffold(
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),

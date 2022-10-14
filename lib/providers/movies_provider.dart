@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:app_flutter/helpers/debouncer.dart';
 import 'package:app_flutter/models/credits_response.dart';
@@ -11,9 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class MoviesProvider extends ChangeNotifier {
-  String _baseUrl = 'api.themoviedb.org';
-  String _apiKey = '4746064ca0d92d332f88c8132195eec2';
-  String _language = 'es-ES';
+  final String _baseUrl = 'api.themoviedb.org';
+  final String _apiKey = '4746064ca0d92d332f88c8132195eec2';
+  final String _language = 'es-ES';
   List<Movie> onDisplayMovies = [];
   List<Movie> popularMovies = [];
   Map<int, List<Cast>> moviesCast = {};
@@ -52,7 +51,6 @@ class MoviesProvider extends ChangeNotifier {
 
   Future<List<Cast>> getMovieCast(int movieId) async {
     if (moviesCast.containsKey(movieId)) return moviesCast[movieId]!;
-    print("Pidinedo");
     final jsonData = await _getJsonData('3/movie/$movieId/credits');
     final creditsResponse = CreditsResponse.fromJson(jsonData);
     moviesCast[movieId] = creditsResponse.cast;
